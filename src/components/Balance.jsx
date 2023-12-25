@@ -1,22 +1,19 @@
 import * as React from "react";
-import { Box, Typography, Avatar } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/system";
 
-export default function Balance({ title }) {
+export default function Balance() {
   const theme = useTheme();
 
   return (
     <Box
       sx={{
-        mt: 5,
-
+        mt: 2,
         width: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        [theme.breakpoints.up("lg")]: {
-        
-        },
+        [theme.breakpoints.up("lg")]: {},
       }}
     >
       <Typography
@@ -27,8 +24,6 @@ export default function Balance({ title }) {
           fontFamily: "Poppins",
           fontWeight: "700",
           wordWrap: "break-word",
-
-          
         }}
       >
         Balance <br />{" "}

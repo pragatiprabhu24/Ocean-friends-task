@@ -52,13 +52,6 @@ const data = [
         color: "#3559E0",
         amount: "-$43.00",
       },
-      {
-        icon: <ReplyIcon />,
-        title: "Card to card",
-        subtitle: "Maria",
-        color: "#F11A7B",
-        amount: "-$2467.00",
-      },
     ],
   },
   {

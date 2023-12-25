@@ -55,18 +55,19 @@ const Home = () => {
       {!isDesktop && (
         <>
           <img
-            className="absolute top-[200px] left-[20px] w-[260px] h-[410px] object-contain cursor-pointer"
+            className="absolute top-[200px] left-[20px] w-[260px] h-[350px] object-contain cursor-pointer"
             alt=""
             src={group10}
             onClick={handleClick}
           />
           <img
-            className="absolute top-[200px] left-[300px] w-[260px] h-[410px] object-contain cursor-pointer"
+            className="absolute top-[200px] left-[300px] w-[260px] h-[350px] object-contain cursor-pointer"
             alt=""
             src={group9}
           />
           <div className="absolute top-[650px] left-[143px] rounded-[70px] bg-white w-[30px] h-1" />
           <div className="absolute top-[707px] left-[183px] rounded-[9px] bg-darkslategray w-5 h-1 cursor-pointer" />
+          
         </>
       )}
 

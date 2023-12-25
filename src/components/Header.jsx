@@ -13,9 +13,7 @@ export default function Header({ title }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        [theme.breakpoints.up("lg")]: {
-      
-        },
+        [theme.breakpoints.up("lg")]: {},
       }}
     >
       <Typography

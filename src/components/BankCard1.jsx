@@ -1,6 +1,5 @@
 /* eslint-disable  */
 import React, { useState } from "react";
-
 import { Box, Stack, Grid } from "@mui/material";
 import { useTheme } from "@mui/system";
 import img from "../assets/Group 7.png";
@@ -16,7 +15,6 @@ const BankCard1 = () => {
     <Box
       sx={{
         mt: 2,
-
         width: "100%",
         display: "flex",
         alignItems: "center",
@@ -34,7 +32,6 @@ const BankCard1 = () => {
                 class="relative object-cover w-full h-full rounded-xl"
                 src={back1}
               />
-
               <div class="w-full px-8 absolute top-8">
                 <div class="flex justify-between">
                   <div class="flex items-center justify-between">

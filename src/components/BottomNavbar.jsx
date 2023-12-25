@@ -1,12 +1,9 @@
-// BottomNavbar.js
-
 import React from "react";
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { useTheme } from "@mui/system";
 import { useNavigate } from "react-router-dom";
-
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ViewDayOutlinedIcon from "@mui/icons-material/ViewDayOutlined";
 import ScheduleOutlinedIcon from "@mui/icons-material/ScheduleOutlined";
@@ -30,22 +27,13 @@ const BottomNavbar = () => {
     navigate(selectedNavItem.path);
   };
 
-  const commonIconStyle = {
-    backgroundColor: "#7071E8",
-    borderRadius: "2rem",
-
-    [theme.breakpoints.up("lg")]: {},
-  };
-
   return (
     <Box
       sx={{
         position: "fixed",
         bottom: 0,
         width: "100%",
-        [theme.breakpoints.up("lg")]: {
-       
-        },
+        [theme.breakpoints.up("lg")]: {},
       }}
     >
       <BottomNavigation
