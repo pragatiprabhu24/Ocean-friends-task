@@ -44,9 +44,7 @@ const BottomNavbar = () => {
         bottom: 0,
         width: "100%",
         [theme.breakpoints.up("lg")]: {
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+       
         },
       }}
     >

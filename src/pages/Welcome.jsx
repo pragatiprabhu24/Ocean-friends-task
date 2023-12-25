@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ocean from '../assets/ocean.png';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ocean from "../assets/ocean.png";
 
 const Welcome = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      navigate('/home');
+      navigate("/home");
     }, 2000);
 
     return () => clearTimeout(timeoutId);

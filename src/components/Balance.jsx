@@ -15,7 +15,7 @@ export default function Balance({ title }) {
         alignItems: "center",
         justifyContent: "space-between",
         [theme.breakpoints.up("lg")]: {
-          justifyContent: "center",
+        
         },
       }}
     >
@@ -28,9 +28,7 @@ export default function Balance({ title }) {
           fontWeight: "700",
           wordWrap: "break-word",
 
-          [theme.breakpoints.up("lg")]: {
-            mr: 26,
-          },
+          
         }}
       >
         Balance <br />{" "}

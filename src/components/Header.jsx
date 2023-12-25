@@ -14,7 +14,7 @@ export default function Header({ title }) {
         alignItems: "center",
         justifyContent: "space-between",
         [theme.breakpoints.up("lg")]: {
-          justifyContent: "center",
+      
         },
       }}
     >
