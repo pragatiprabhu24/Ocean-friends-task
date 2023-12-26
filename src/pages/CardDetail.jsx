@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Header from "../components/Header";
 import BottomNavbar from "../components/BottomNavbar";
 import {
@@ -25,10 +26,81 @@ import ReplyIcon from "@mui/icons-material/Reply";
 import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
+import { motion, useAnimation } from "framer-motion";
 const data = [
   {
-    date: "20 April",
+    date: "Today",
     subdata: [
+      {
+        icon: <ReplyIcon />,
+        title: "Card to card",
+        subtitle: "Maria",
+        color: "#F11A7B",
+        amount: "+$143.00",
+      },
+      {
+        icon: <AudiotrackIcon />,
+        title: "Apple music",
+        subtitle: "Online",
+        color: "#FD8D14",
+        amount: "-$467.00",
+      },
+      {
+        icon: <DirectionsCarIcon />,
+        title: "Uber",
+        subtitle: "Service",
+        color: "#3559E0",
+        amount: "-$467.00",
+      },
+      {
+        icon: <ReplyIcon />,
+        title: "Card to card",
+        subtitle: "Maria",
+        color: "#F11A7B",
+        amount: "+$143.00",
+      },
+      {
+        icon: <AudiotrackIcon />,
+        title: "Apple music",
+        subtitle: "Online",
+        color: "#FD8D14",
+        amount: "-$467.00",
+      },
+      {
+        icon: <DirectionsCarIcon />,
+        title: "Uber",
+        subtitle: "Service",
+        color: "#3559E0",
+        amount: "-$467.00",
+      },
+      {
+        icon: <ReplyIcon />,
+        title: "Card to card",
+        subtitle: "Maria",
+        color: "#F11A7B",
+        amount: "+$143.00",
+      },
+      {
+        icon: <AudiotrackIcon />,
+        title: "Apple music",
+        subtitle: "Online",
+        color: "#FD8D14",
+        amount: "-$467.00",
+      },
+      {
+        icon: <DirectionsCarIcon />,
+        title: "Uber",
+        subtitle: "Service",
+        color: "#3559E0",
+        amount: "-$467.00",
+      },
+      {
+        icon: <DirectionsCarIcon />,
+        title: "Uber",
+        subtitle: "Service",
+        color: "#3559E0",
+        amount: "-$467.00",
+      },
       {
         icon: <ReplyIcon />,
         title: "Card to card",
@@ -56,6 +128,31 @@ const data = [
 
 const CardDetail = () => {
   const theme = useTheme();
+  const [displayedItems, setDisplayedItems] = useState(3);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const controls = useAnimation();
+
+  const handleDividerClick = () => {
+    const listContainer = document.getElementById("list-container");
+
+    if (listContainer) {
+      if (isOpen) {
+        controls.start({ y: 0 });
+      } else {
+        controls.start({ y: -200 });
+
+        listContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      setIsOpen(!isOpen);
+
+      setDisplayedItems((prev) => prev + 3);
+    }
+  };
+  const handleListItemClick = (index) => {
+    setSelectedItem(index === selectedItem ? null : index);
+  };
+
   return (
     <>
       <Container>
@@ -90,74 +187,99 @@ const CardDetail = () => {
           </div>
         </Box>
       </Container>
-      <Box
-        sx={{
-          mb: 4,
-          width: "100%",
-          backgroundColor: "#192139",
-          p: 1,
-          [theme.breakpoints.up("lg")]: {
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          },
-        }}
-      >
-        <List
+      <motion.div animate={controls}>
+        <Box
           sx={{
             width: "100%",
-            maxWidth: 360,
+
+            backgroundColor: "#192139",
+            p: 1,
+            [theme.breakpoints.up("lg")]: {
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            },
           }}
         >
-          {data.map((item, index) => (
-            <>
-              <Divider
-                className="text-center"
-                sx={{ borderColor: "#fff", mx: "auto", width: 30 }} // Centering the divider
-              />
-              <Typography variant="h6" sx={{ color: "#fff", ml: 2 }}>
-                Today
-              </Typography>
-              {item.subdata.map((item, index) => (
-                <>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar sx={{ backgroundColor: `${item.color}` }}>
-                        {item.icon}
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={
-                        <span style={{ color: "white", fontSize: 20 }}>
-                          {item.title}
-                        </span>
-                      }
-                      secondary={
-                        <span style={{ color: "#D2E0FB", fontSize: 15 }}>
-                          {item.subtitle}
-                        </span>
-                      }
-                    />
-                    <ListItemSecondaryAction>
-                      <Typography
-                        variant="p"
-                        sx={{ mt: 1, color: "#fff", fontWeight: "bold" }}
+          <List
+            id="list-container"
+            sx={{
+              width: "100%",
+              maxWidth: 360,
+            }}
+          >
+            {data.map((item, index) => (
+              <>
+                <Divider
+                  className="text-center"
+                  sx={{ borderColor: "#fff", mx: "auto", width: 30 }}
+                  onClick={handleDividerClick}
+                />
+                <Typography variant="h6" sx={{ color: "#fff", ml: 2 }}>
+                  {item.date}
+                </Typography>
+                {item.subdata.slice(0, displayedItems).map((item, index) => (
+                  <>
+                    <ListItem
+                      key={index}
+                      onClick={() => handleListItemClick(index)}
+                      selected={index === selectedItem}
+                    >
+                      <ListItemAvatar onClick={handleDividerClick}>
+                        <Avatar sx={{ backgroundColor: `${item.color}` }}>
+                          {item.icon}
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={
+                          <span style={{ color: "white", fontSize: 20 }}>
+                            {item.title}
+                          </span>
+                        }
+                        secondary={
+                          <span style={{ color: "#D2E0FB", fontSize: 15 }}>
+                            {item.subtitle}
+                          </span>
+                        }
+                      />
+                      <ListItemSecondaryAction>
+                        <Typography
+                          variant="p"
+                          sx={{ mt: 1, color: "#fff", fontWeight: "bold" }}
+                        >
+                          {item.amount}
+                        </Typography>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                    {index === selectedItem && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
                       >
-                        {item.amount}
-                      </Typography>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <Divider
-                    variant="inset"
-                    component="li"
-                    sx={{ borderColor: "#4B527E" }}
-                  />
-                </>
-              ))}
-            </>
-          ))}
-        </List>
-      </Box>
+                        <Box p={2} color="#fff">
+                          <Typography
+                            variant="subtitle1"
+                            sx={{ color: "#D2E0FB", fontSize: 15, ml: 8 }}
+                          >
+                            xxxxxxxxxxxx4586
+                            <br /> 21/09/2023 10:12 A.M.
+                          </Typography>
+                        </Box>
+                      </motion.div>
+                    )}
+                    <Divider
+                      variant="inset"
+                      component="li"
+                      sx={{ borderColor: "#4B527E" }}
+                    />
+                  </>
+                ))}
+              </>
+            ))}
+          </List>
+        </Box>
+      </motion.div>
     </>
   );
 };

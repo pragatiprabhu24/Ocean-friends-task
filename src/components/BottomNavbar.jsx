@@ -3,29 +3,27 @@ import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { useTheme } from "@mui/system";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ViewDayOutlinedIcon from "@mui/icons-material/ViewDayOutlined";
 import ScheduleOutlinedIcon from "@mui/icons-material/ScheduleOutlined";
 import DensityMediumOutlinedIcon from "@mui/icons-material/DensityMediumOutlined";
 
 const navigationItems = [
-  { icon: HomeOutlinedIcon, path: "/home" },
-  { icon: ViewDayOutlinedIcon, path: "/catelogue" },
-  { icon: ScheduleOutlinedIcon, path: "/history" },
-  { icon: DensityMediumOutlinedIcon, path: "/density" },
+  { icon: HomeOutlinedIcon, path: "/home", label: "Home" },
+  { icon: ViewDayOutlinedIcon, path: "/cateloguelist", label: "Catalogue" },
+  { icon: ScheduleOutlinedIcon, path: "/history", label: "History" },
+  { icon: DensityMediumOutlinedIcon, path: "", label: "Other" },
 ];
 
 const BottomNavbar = () => {
-  const [value, setValue] = React.useState(0);
   const theme = useTheme();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleNavigationChange = (event, newValue) => {
-    setValue(newValue);
-    const selectedNavItem = navigationItems[newValue];
-    navigate(selectedNavItem.path);
-  };
+  const activeIndex = navigationItems.findIndex(
+    (item) => item.path === location.pathname
+  );
 
   return (
     <Box
@@ -38,8 +36,7 @@ const BottomNavbar = () => {
     >
       <BottomNavigation
         showLabels
-        value={value}
-        onChange={handleNavigationChange}
+        value={activeIndex}
         sx={{
           backgroundColor: "#2F395B",
           p: 1,
@@ -51,16 +48,17 @@ const BottomNavbar = () => {
         {navigationItems.map((item, index) => (
           <BottomNavigationAction
             key={index}
-            label={item.label}
             icon={React.createElement(item.icon, {
               sx: {
-                fontSize: value === index ? 40 : 25,
-                color: value === index ? "white" : "#7A91D2",
-                backgroundColor: value === index ? "#7071E8" : "transparent",
+                fontSize: activeIndex === index ? 40 : 25,
+                color: activeIndex === index ? "white" : "#7A91D2",
+                backgroundColor:
+                  activeIndex === index ? "#7071E8" : "transparent",
                 borderRadius: "2rem",
-                p: value === index ? 1 : null,
+                p: activeIndex === index ? 1 : null,
               },
             })}
+            onClick={() => navigate(item.path)}
           />
         ))}
       </BottomNavigation>

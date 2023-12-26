@@ -14,14 +14,9 @@ const Welcome = () => {
   }, [navigate]);
 
   return (
-    <div className="relative bg-gray w-full h-[812px] overflow-hidden">
+    <div className="flex items-center justify-center h-screen bg-gray overflow-hidden">
       <img
-        className="absolute top-[-43px] left-[-79px] w-[515px] h-[913px] object-cover hidden"
-        alt=""
-        src="/bg@2x.png"
-      />
-      <img
-        className="absolute top-[294px] left-[38px] w-[263px] h-[146px] overflow-hidden object-cover"
+        className="w-[263px] h-[146px] object-cover"
         alt=""
         src={ocean}
       />
