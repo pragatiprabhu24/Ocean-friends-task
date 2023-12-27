@@ -226,7 +226,12 @@ const CardDetail = () => {
               <>
                 <Divider
                   className="text-center"
-                  sx={{ borderColor: "#fff", mx: "auto", width: 30 }}
+                  sx={{
+                    borderColor: "#fff",
+                    mx: "auto",
+                    width: 30,
+                    cursor: "pointer",
+                  }}
                   onClick={handleDividerClick}
                 />
                 <Typography variant="h6" sx={{ color: "#fff", ml: 2 }}>
@@ -238,6 +243,7 @@ const CardDetail = () => {
                       key={index}
                       onClick={() => handleListItemClick(index)}
                       selected={index === selectedItem}
+                      sx={{ cursor: "pointer" }}
                     >
                       <ListItemAvatar onClick={handleDividerClick}>
                         <Avatar sx={{ backgroundColor: `${item.color}` }}>
