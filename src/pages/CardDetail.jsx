@@ -122,13 +122,27 @@ const data = [
         color: "#3559E0",
         amount: "-$467.00",
       },
+      {
+        icon: <AudiotrackIcon />,
+        title: "Apple music",
+        subtitle: "Online",
+        color: "#FD8D14",
+        amount: "-$467.00",
+      },
+      {
+        icon: <DirectionsCarIcon />,
+        title: "Uber",
+        subtitle: "Service",
+        color: "#3559E0",
+        amount: "-$467.00",
+      },
     ],
   },
 ];
 
 const CardDetail = () => {
   const theme = useTheme();
-  const [displayedItems, setDisplayedItems] = useState(3);
+  const [displayedItems, setDisplayedItems] = useState(5);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const controls = useAnimation();
@@ -166,24 +180,27 @@ const CardDetail = () => {
             mb: 1,
             width: "100%",
 
-            [theme.breakpoints.up("lg")]: {
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              ml: "4rem",
-            },
+            [theme.breakpoints.up("lg")]: {},
           }}
         >
-          <div className="flex flex-row items-center justify-between">
-            <Balance />
-            <Stack direction="row" spacing={2} sx={{ mt: 4 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <Balance />
+            </div>
+            <div>
+              <Button sx={{ p: 2, mr: 2 }} variant="outlined">
+                <img src={share1} alt="Share 1" />
+              </Button>
               <Button sx={{ p: 2 }} variant="outlined">
-                <img src={share1} />
+                <img src={share2} alt="Share 2" />
               </Button>
-              <Button variant="outlined">
-                <img src={share2} />
-              </Button>
-            </Stack>
+            </div>
           </div>
         </Box>
       </Container>
@@ -191,21 +208,18 @@ const CardDetail = () => {
         <Box
           sx={{
             width: "100%",
-
             backgroundColor: "#192139",
             p: 1,
-            [theme.breakpoints.up("lg")]: {
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            },
+            overflowY: "auto",
+            maxHeight: "calc(100vh - 200px)",
           }}
         >
           <List
             id="list-container"
             sx={{
               width: "100%",
-              maxWidth: 360,
+              maxWidth: 560,
+              mx: "auto",
             }}
           >
             {data.map((item, index) => (
